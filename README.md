@@ -82,6 +82,7 @@ assets/               README 与演示素材
 - [OneNET 配置](docs/onenet.md)
 - [问题排查](docs/troubleshooting.md)
 - [发布检查清单](docs/release-checklist.md)
+- [视觉素材制作计划](docs/visual-content-plan.md)
 
 ## 安全提醒
 

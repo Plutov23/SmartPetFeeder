@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">SmartPetFeeder 系统架构</title>
+  <desc id="desc">展示传感器、STM32、MaixCam、ESP-01S、OneNET 和微信小程序之间的关系。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#334155"/>
+    </marker>
+    <style>
+      .title { font: 700 42px "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #102a43; }
+      .subtitle { font: 400 20px "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #627d98; }
+      .lane-title { font: 700 22px "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #334e68; letter-spacing: 1px; }
+      .node-title { font: 700 25px "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #102a43; }
+      .node-text { font: 400 18px "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #486581; }
+      .edge-label { font: 600 16px "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #334155; }
+      .box { stroke-width: 2; rx: 18; }
+      .edge { fill: none; stroke: #334155; stroke-width: 3; marker-end: url(#arrow); }
+      .edge-bi { fill: none; stroke: #334155; stroke-width: 3; marker-start: url(#arrow); marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="#f7f9f6"/>
+  <text x="70" y="72" class="title">SmartPetFeeder 系统架构</text>
+  <text x="70" y="108" class="subtitle">本地控制、视觉识别、云端数据与微信小程序协同工作</text>
+
+  <rect x="50" y="145" width="370" height="690" rx="28" fill="#edf7f2" stroke="#9bc9b5" stroke-width="2"/>
+  <text x="80" y="190" class="lane-title">传感与视觉层</text>
+
+  <rect x="455" y="145" width="340" height="690" rx="28" fill="#eef4fb" stroke="#9db9d7" stroke-width="2"/>
+  <text x="485" y="190" class="lane-title">控制与执行层</text>
+
+  <rect x="830" y="145" width="300" height="690" rx="28" fill="#fff6e8" stroke="#dfbd7b" stroke-width="2"/>
+  <text x="860" y="190" class="lane-title">网络与云平台</text>
+
+  <rect x="1165" y="145" width="385" height="690" rx="28" fill="#f7effa" stroke="#c6a1d3" stroke-width="2"/>
+  <text x="1195" y="190" class="lane-title">用户应用层</text>
+
+  <rect x="85" y="230" width="300" height="150" class="box" fill="#ffffff" stroke="#68a88a"/>
+  <text x="115" y="272" class="node-title">环境与重量</text>
+  <text x="115" y="310" class="node-text">AHT20 · 温湿度</text>
+  <text x="115" y="340" class="node-text">HX711 · 余粮重量</text>
+  <text x="115" y="370" class="node-text">DS1302 · 实时时钟</text>
+
+  <rect x="85" y="500" width="300" height="155" class="box" fill="#ffffff" stroke="#68a88a"/>
+  <text x="115" y="542" class="node-title">MaixCam</text>
+  <text x="115" y="580" class="node-text">YOLOv5 猫狗检测</text>
+  <text x="115" y="610" class="node-text">进食状态 · JPEG 视频</text>
+
+  <rect x="495" y="250" width="260" height="185" class="box" fill="#ffffff" stroke="#5b83ad"/>
+  <text x="625" y="300" text-anchor="middle" class="node-title">STM32F103</text>
+  <text x="625" y="340" text-anchor="middle" class="node-text">采集 · 调度 · 协议</text>
+  <text x="625" y="370" text-anchor="middle" class="node-text">进食事件计算</text>
+  <text x="625" y="400" text-anchor="middle" class="node-text">本地安全控制</text>
+
+  <rect x="495" y="540" width="260" height="180" class="box" fill="#ffffff" stroke="#5b83ad"/>
+  <text x="625" y="585" text-anchor="middle" class="node-title">执行与显示</text>
+  <text x="625" y="625" text-anchor="middle" class="node-text">步进电机 · ULN2003</text>
+  <text x="625" y="655" text-anchor="middle" class="node-text">OLED · 蜂鸣器 · LED</text>
+
+  <rect x="865" y="255" width="230" height="145" class="box" fill="#ffffff" stroke="#c99137"/>
+  <text x="980" y="305" text-anchor="middle" class="node-title">ESP-01S</text>
+  <text x="980" y="343" text-anchor="middle" class="node-text">Wi-Fi · MQTT AT</text>
+  <text x="980" y="373" text-anchor="middle" class="node-text">USART3</text>
+
+  <rect x="865" y="540" width="230" height="145" class="box" fill="#ffffff" stroke="#c99137"/>
+  <text x="980" y="590" text-anchor="middle" class="node-title">OneNET</text>
+  <text x="980" y="628" text-anchor="middle" class="node-text">物模型 · MQTT</text>
+  <text x="980" y="658" text-anchor="middle" class="node-text">HTTPS API</text>
+
+  <rect x="1205" y="315" width="305" height="245" class="box" fill="#ffffff" stroke="#a16ab3"/>
+  <text x="1357" y="370" text-anchor="middle" class="node-title">微信小程序</text>
+  <text x="1357" y="415" text-anchor="middle" class="node-text">设备数据与余粮</text>
+  <text x="1357" y="447" text-anchor="middle" class="node-text">手动出粮与喂食计划</text>
+  <text x="1357" y="479" text-anchor="middle" class="node-text">进食记录</text>
+  <text x="1357" y="511" text-anchor="middle" class="node-text">局域网视频</text>
+
+  <path d="M385 305 L495 330" class="edge"/>
+  <text x="440" y="292" text-anchor="middle" class="edge-label">GPIO / I2C</text>
+
+  <path d="M385 570 C430 530 445 430 495 390" class="edge"/>
+  <text x="430" y="486" text-anchor="middle" class="edge-label">UART2</text>
+
+  <path d="M625 435 L625 540" class="edge"/>
+  <text x="650" y="500" class="edge-label">TIM3 / GPIO</text>
+
+  <path d="M755 330 L865 330" class="edge-bi"/>
+  <text x="810" y="310" text-anchor="middle" class="edge-label">UART3</text>
+
+  <path d="M980 400 L980 540" class="edge-bi"/>
+  <text x="1005" y="478" class="edge-label">MQTT</text>
+
+  <path d="M1095 610 C1160 610 1160 500 1205 470" class="edge-bi"/>
+  <text x="1155" y="575" text-anchor="middle" class="edge-label">HTTPS</text>
+
+  <path d="M385 620 C650 820 1040 820 1205 525" fill="none" stroke="#7c3f91" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="735" y="782" width="250" height="35" rx="17" fill="#f7effa"/>
+  <text x="860" y="806" text-anchor="middle" class="edge-label">WebSocket · Base64 JPEG</text>
+</svg>

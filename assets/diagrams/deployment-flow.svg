@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="920" viewBox="0 0 1600 920" role="img" aria-labelledby="title desc">
+  <title id="title">SmartPetFeeder 部署流程</title>
+  <desc id="desc">展示从本地配置、平台准备到 STM32、MaixCam、小程序部署和系统验收的顺序。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#46637f"/></marker>
+    <style>
+      .title { font: 700 42px "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #102a43; }
+      .subtitle { font: 400 20px "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #627d98; }
+      .step { font: 700 19px "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #fff; }
+      .node-title { font: 700 24px "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #102a43; }
+      .node-text { font: 400 17px "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #486581; }
+      .file { font: 600 15px "SFMono-Regular", Consolas, monospace; fill: #334e68; }
+      .edge { stroke: #46637f; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="1600" height="920" fill="#f8faf8"/>
+  <text x="70" y="72" class="title">从克隆仓库到完整运行</text>
+  <text x="70" y="108" class="subtitle">三个端分别部署，最后按照数据路径进行端到端验收</text>
+
+  <circle cx="130" cy="220" r="42" fill="#355f82"/>
+  <text x="130" y="227" text-anchor="middle" class="step">01</text>
+  <rect x="200" y="155" width="310" height="135" rx="20" fill="#fff" stroke="#8da9bf" stroke-width="2"/>
+  <text x="235" y="198" class="node-title">准备平台与硬件</text>
+  <text x="235" y="235" class="node-text">OneNET 产品 / 设备 / 物模型</text>
+  <text x="235" y="265" class="node-text">供电 · 接线 · ST-Link · 模型</text>
+
+  <path d="M510 222 L610 222" class="edge"/>
+  <circle cx="660" cy="220" r="42" fill="#437b66"/>
+  <text x="660" y="227" text-anchor="middle" class="step">02</text>
+  <rect x="730" y="145" width="520" height="155" rx="20" fill="#fff" stroke="#90b8a8" stroke-width="2"/>
+  <text x="765" y="188" class="node-title">创建本地配置</text>
+  <text x="765" y="225" class="file">app_config.example.h → app_config.h</text>
+  <text x="765" y="255" class="file">config.example.py → config.py</text>
+  <text x="765" y="285" class="file">config.example.js → config.js</text>
+
+  <path d="M990 300 L990 365" class="edge"/>
+
+  <rect x="85" y="395" width="420" height="245" rx="24" fill="#eef4fb" stroke="#8caac5" stroke-width="2"/>
+  <circle cx="130" cy="440" r="30" fill="#355f82"/>
+  <text x="130" y="447" text-anchor="middle" class="step">03A</text>
+  <text x="180" y="448" class="node-title">STM32 固件</text>
+  <text x="125" y="500" class="node-text">Keil 打开 F103_Feeder.uvprojx</text>
+  <text x="125" y="535" class="node-text">编译 · ST-Link 烧录</text>
+  <text x="125" y="570" class="node-text">USART1 9600 查看启动日志</text>
+  <text x="125" y="605" class="node-text">标定 HX711 与每克步数</text>
+
+  <rect x="590" y="395" width="420" height="245" rx="24" fill="#eef8f4" stroke="#8fb9a8" stroke-width="2"/>
+  <circle cx="635" cy="440" r="30" fill="#437b66"/>
+  <text x="635" y="447" text-anchor="middle" class="step">03B</text>
+  <text x="685" y="448" class="node-title">MaixCam 视觉端</text>
+  <text x="630" y="500" class="node-text">部署 main.py 与 config.py</text>
+  <text x="630" y="535" class="node-text">加载 YOLOv5 模型</text>
+  <text x="630" y="570" class="node-text">验证 UART2 状态文本</text>
+  <text x="630" y="605" class="node-text">记录 WebSocket 局域网地址</text>
+
+  <rect x="1095" y="395" width="420" height="245" rx="24" fill="#f7effa" stroke="#b899c6" stroke-width="2"/>
+  <circle cx="1140" cy="440" r="30" fill="#79558d"/>
+  <text x="1140" y="447" text-anchor="middle" class="step">03C</text>
+  <text x="1190" y="448" class="node-title">微信小程序</text>
+  <text x="1135" y="500" class="node-text">开发者工具导入工程</text>
+  <text x="1135" y="535" class="node-text">配置 OneNET API</text>
+  <text x="1135" y="570" class="node-text">配置 MaixCam WebSocket</text>
+  <text x="1135" y="605" class="node-text">分别验证数据、命令和视频</text>
+
+  <path d="M295 640 C295 710 600 710 730 745" class="edge"/>
+  <path d="M800 640 L800 720" class="edge"/>
+  <path d="M1305 640 C1305 710 1000 710 870 745" class="edge"/>
+
+  <circle cx="800" cy="785" r="42" fill="#bd6b2d"/>
+  <text x="800" y="792" text-anchor="middle" class="step">04</text>
+  <rect x="520" y="730" width="560" height="145" rx="24" fill="#fff6e8" stroke="#d8a168" stroke-width="2"/>
+  <text x="850" y="775" class="node-title">端到端联调与验收</text>
+  <text x="850" y="812" class="node-text">传感上报 · 手动出粮 · 定时计划 · 健康记录 · 视频</text>
+  <text x="850" y="845" class="node-text">保存日志、截图、测试结果和 Git 提交号</text>
+</svg>

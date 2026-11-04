@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100" role="img" aria-labelledby="title desc">
+  <title id="title">SmartPetFeeder 硬件接线总览</title>
+  <desc id="desc">展示 STM32F103 与串口模块、传感器、显示、电机和蜂鸣器的引脚连接。</desc>
+  <defs>
+    <style>
+      .title { font: 700 42px "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #102a43; }
+      .subtitle { font: 400 20px "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #627d98; }
+      .group-title { font: 700 22px "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #334e68; }
+      .node-title { font: 700 22px "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #102a43; }
+      .node-text { font: 400 17px "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #486581; }
+      .pin { font: 600 17px "SFMono-Regular", Consolas, monospace; fill: #243b53; }
+      .wire { fill: none; stroke-width: 3; }
+      .serial { stroke: #7b61a8; }
+      .sensor { stroke: #27866f; }
+      .output { stroke: #c36b26; }
+      .box { fill: #ffffff; stroke-width: 2; rx: 16; }
+    </style>
+  </defs>
+  <rect width="1600" height="1100" fill="#f8faf8"/>
+  <text x="70" y="72" class="title">硬件接线总览</text>
+  <text x="70" y="108" class="subtitle">信号线按当前源码宏定义整理；所有通信模块必须共地</text>
+
+  <rect x="50" y="150" width="425" height="755" rx="26" fill="#f6f1fa" stroke="#c5afd5" stroke-width="2"/>
+  <text x="80" y="195" class="group-title">串口通信</text>
+
+  <rect x="90" y="235" width="330" height="145" class="box" stroke="#9b7ebb"/>
+  <text x="120" y="275" class="node-title">USB 转 TTL</text>
+  <text x="120" y="312" class="node-text">调试日志 · 9600 baud</text>
+  <text x="120" y="345" class="pin">RX ← PA9 · TX → PA10</text>
+
+  <rect x="90" y="450" width="330" height="145" class="box" stroke="#9b7ebb"/>
+  <text x="120" y="490" class="node-title">MaixCam</text>
+  <text x="120" y="527" class="node-text">视觉状态 · 9600 baud</text>
+  <text x="120" y="560" class="pin">TX → PA3 · RX ← PA2</text>
+
+  <rect x="90" y="665" width="330" height="165" class="box" stroke="#9b7ebb"/>
+  <text x="120" y="705" class="node-title">ESP-01S</text>
+  <text x="120" y="742" class="node-text">Wi-Fi / MQTT · 115200 baud</text>
+  <text x="120" y="775" class="pin">TX → PB11 · RX ← PB10</text>
+  <text x="120" y="808" class="node-text">稳定 3.3 V · EN 拉高</text>
+
+  <rect x="535" y="235" width="530" height="595" rx="28" fill="#edf4fb" stroke="#89aaca" stroke-width="3"/>
+  <text x="800" y="300" text-anchor="middle" class="node-title" style="font-size:32px">STM32F103C8T6</text>
+  <text x="800" y="337" text-anchor="middle" class="node-text">72 MHz · 主控制器</text>
+
+  <rect x="585" y="385" width="200" height="95" rx="14" fill="#fff" stroke="#a993bd" stroke-width="2"/>
+  <text x="685" y="420" text-anchor="middle" class="group-title">USART</text>
+  <text x="685" y="452" text-anchor="middle" class="pin">PA2/3 · PA9/10</text>
+
+  <rect x="815" y="385" width="200" height="95" rx="14" fill="#fff" stroke="#a993bd" stroke-width="2"/>
+  <text x="915" y="420" text-anchor="middle" class="group-title">USART3</text>
+  <text x="915" y="452" text-anchor="middle" class="pin">PB10 / PB11</text>
+
+  <rect x="585" y="520" width="200" height="95" rx="14" fill="#fff" stroke="#6eae9a" stroke-width="2"/>
+  <text x="685" y="555" text-anchor="middle" class="group-title">传感输入</text>
+  <text x="685" y="587" text-anchor="middle" class="pin">PA4~6 · PA11/12</text>
+
+  <rect x="815" y="520" width="200" height="95" rx="14" fill="#fff" stroke="#6eae9a" stroke-width="2"/>
+  <text x="915" y="555" text-anchor="middle" class="group-title">I2C / OLED</text>
+  <text x="915" y="587" text-anchor="middle" class="pin">PB8/9 · PB13/14</text>
+
+  <rect x="585" y="655" width="430" height="105" rx="14" fill="#fff" stroke="#d29259" stroke-width="2"/>
+  <text x="800" y="695" text-anchor="middle" class="group-title">执行输出</text>
+  <text x="800" y="730" text-anchor="middle" class="pin">PB4~7 电机 · PB12 蜂鸣器 · PB15 LED</text>
+
+  <rect x="1125" y="150" width="425" height="755" rx="26" fill="#eef8f4" stroke="#9ac7b7" stroke-width="2"/>
+  <text x="1155" y="195" class="group-title">传感器与显示</text>
+
+  <rect x="1170" y="225" width="330" height="130" class="box" stroke="#6eae9a"/>
+  <text x="1200" y="265" class="node-title">AHT20</text>
+  <text x="1200" y="301" class="node-text">I2C1 · 100 kHz</text>
+  <text x="1200" y="330" class="pin">SCL PB8 · SDA PB9</text>
+
+  <rect x="1170" y="395" width="330" height="130" class="box" stroke="#6eae9a"/>
+  <text x="1200" y="435" class="node-title">SSD1306 OLED</text>
+  <text x="1200" y="471" class="node-text">软件 I2C</text>
+  <text x="1200" y="500" class="pin">SCL PB13 · SDA PB14</text>
+
+  <rect x="1170" y="565" width="330" height="130" class="box" stroke="#6eae9a"/>
+  <text x="1200" y="605" class="node-title">DS1302</text>
+  <text x="1200" y="641" class="node-text">三线实时时钟</text>
+  <text x="1200" y="670" class="pin">RST PA6 · CLK PA4 · IO PA5</text>
+
+  <rect x="1170" y="735" width="330" height="130" class="box" stroke="#6eae9a"/>
+  <text x="1200" y="775" class="node-title">HX711</text>
+  <text x="1200" y="811" class="node-text">压力传感器 ADC</text>
+  <text x="1200" y="840" class="pin">DOUT PA11 · SCK PA12</text>
+
+  <path d="M420 307 L535 420" class="wire serial"/>
+  <path d="M420 522 L535 445" class="wire serial"/>
+  <path d="M420 747 L535 465" class="wire serial"/>
+  <path d="M1065 565 L1170 290" class="wire sensor"/>
+  <path d="M1065 575 L1170 460" class="wire sensor"/>
+  <path d="M1065 585 L1170 630" class="wire sensor"/>
+  <path d="M1065 595 L1170 800" class="wire sensor"/>
+
+  <rect x="115" y="950" width="1370" height="100" rx="22" fill="#fff2df" stroke="#d99a50" stroke-width="2"/>
+  <text x="155" y="991" class="node-title" fill="#8d4b16">供电安全</text>
+  <text x="155" y="1025" class="node-text">电机必须经过驱动板；ESP-01S 使用稳定 3.3 V；电机与逻辑电源可分开，但 GND 必须相连。</text>
+</svg>
