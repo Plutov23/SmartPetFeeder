@@ -50,6 +50,8 @@ assets/               README 与演示素材
 - [教程总目录](tutorials/README.md)
 - [第 0 章：项目介绍与系统架构](tutorials/00-项目介绍.md)
 - [第 1 章：硬件准备与接线](tutorials/01-硬件准备与接线.md)
+- [第 2 章：STM32 工程与首次运行](tutorials/02-STM32工程与首次运行.md)
+- [第 3 章：HX711 称重与标定](tutorials/03-HX711称重与标定.md)
 
 后续章节将依次覆盖 STM32 基础、称重标定、电机控制、传感器、OneNET、MaixCam、微信小程序和系统联调。
 
