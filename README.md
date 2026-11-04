@@ -52,6 +52,13 @@ assets/               README 与演示素材
 - [第 1 章：硬件准备与接线](tutorials/01-硬件准备与接线.md)
 - [第 2 章：STM32 工程与首次运行](tutorials/02-STM32工程与首次运行.md)
 - [第 3 章：HX711 称重与标定](tutorials/03-HX711称重与标定.md)
+- [第 4 章：步进电机与出粮标定](tutorials/04-步进电机与出粮标定.md)
+- [第 5 章：显示、传感器与实时时钟](tutorials/05-显示传感器与实时时钟.md)
+- [第 6 章：ESP-01S 与 OneNET](tutorials/06-ESP01S与OneNET.md)
+- [第 7 章：MaixCam 视觉识别](tutorials/07-MaixCam视觉识别.md)
+- [第 8 章：微信小程序](tutorials/08-微信小程序.md)
+- [第 9 章：系统联调](tutorials/09-系统联调.md)
+- [第 10 章：测试、排障与改进](tutorials/10-测试排障与改进.md)
 
 后续章节将依次覆盖 STM32 基础、称重标定、电机控制、传感器、OneNET、MaixCam、微信小程序和系统联调。
 
