@@ -1,0 +1,9 @@
+id: feeder
+name: SmartPetFeeder
+version: 2.0.3
+author: SmartPetFeeder contributors
+icon: app.png
+desc: Pet detection and video streaming for SmartPetFeeder
+files:
+  - main.py
+  - config.py

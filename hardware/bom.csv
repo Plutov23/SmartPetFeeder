@@ -1,0 +1,16 @@
+Category,Part,Model_or_Specification,Quantity,Notes
+Controller,Microcontroller board,STM32F103C8T6,1,3.3 V logic
+Vision,AI camera,MaixCam,1,UART and Wi-Fi
+Network,Wi-Fi module,ESP-01S,1,Requires stable 3.3 V supply
+Display,OLED display,SSD1306 128x64,1,Software I2C
+Environment,Temperature and humidity sensor,AHT20,1,I2C
+Clock,RTC module,DS1302,1,Three-wire interface
+Weight,ADC module,HX711,1,Connects to load cell
+Weight,Load cell,Select for hopper capacity,1,Requires calibration
+Actuator,Stepper motor,28BYJ-48 5 V,1,Dispensing mechanism
+Actuator,Motor driver,ULN2003,1,Four-channel control
+Indicator,Active buzzer,3.3 V compatible,1,Check active level
+Power,5 V regulator,Sized for motor and MaixCam,1,Provide current margin
+Power,3.3 V regulator,Sized for MCU ESP and sensors,1,Low ripple preferred
+Power,DC supply,Match regulator input,1,Add fuse and reverse protection
+Mechanical,Food-safe hopper and dispenser,Custom,1,Avoid food-contact printed materials without verification

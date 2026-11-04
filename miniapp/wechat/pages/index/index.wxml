@@ -1,0 +1,216 @@
+<view class="app-container">
+  <scroll-view scroll-y wx:if="{{showRecords}}" class="full-page">
+    <view class="header-nav">
+      <view class="back-btn neo-border neo-shadow-sm bg-white" bindtap="closeRecords">〈</view>
+      <view class="page-title">喂食手账 (˶ᵔ ᵕ ᵔ˶)</view>
+      <view style="width: 40px;"></view>
+    </view>
+    
+    <view class="grid-2-col" style="margin-top: 16px; margin-bottom: 32px;">
+      <view class="neo-card bg-pink">
+        <view class="icon-circle bg-white mb-2">🐾</view>
+        <view class="flex-row justify-between">
+          <view class="text-xs font-bold">今日已喂</view>
+          <view class="text-xs font-bold bg-white neo-border" style="border-radius: 8px; padding: 2px 6px;">{{foodieTitle}}</view>
+        </view>
+        <view class="text-2xl font-black mt-1">{{todayTotal}}<text class="text-xs">g</text></view>
+        <view class="text-xs font-bold text-gray mt-1">约 {{todayTotal * 4}} 千卡</view>
+      </view>
+
+      <view class="neo-card bg-mint">
+        <view class="icon-circle bg-white mb-2">🌟</view>
+        <view class="text-xs font-bold">本周共计</view>
+        <view class="text-2xl font-black mt-1">{{weekTotal}}<text class="text-xs">g</text></view>
+        <view class="text-xs font-bold text-gray mt-1">继续保持哦</view>
+      </view>
+    </view>
+
+    <view class="neo-card bg-white">
+      <view class="card-title border-dashed pb-2 mb-2 font-bold">今日明细</view>
+      
+      <block wx:if="{{todayRecords.length > 0}}">
+        <view class="list-item" wx:for="{{todayRecords}}" wx:key="id">
+          
+          <view class="flex-col" style="flex: 1;">
+            <view class="flex-row" style="margin-bottom: 4px;">
+              <text class="font-black">{{item.time}}</text>
+              <text class="text-gray" style="margin: 0 8px;">|</text>
+              <text class="text-sm font-bold {{item.type == '智能监测' ? 'text-green' : ''}}">{{item.type}}</text>
+            </view>
+            <view class="flex-row gap-1" wx:if="{{item.duration}}" style="margin-top: 4px;">
+              <text class="text-xs text-gray bg-gray" style="border-radius: 4px; padding: 2px 6px;">⏱️ {{item.duration}}秒</text>
+              <text class="text-xs text-white bg-mint" style="border-radius: 4px; padding: 2px 6px;" wx:if="{{item.duration > 5}}">状态良好</text>
+            </view>
+          </view>
+          
+          <text class="font-black text-lg text-orange">+{{item.amount}}g</text>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="text-center text-gray font-bold" style="padding: 20px 0;">今天还没有喂食记录哦</view>
+      </block>
+    </view>
+
+    <view class="kawaii-footer">
+      <view class="cat-ears">
+        <view class="ear left neo-border bg-yellow"></view>
+        <view class="ear right neo-border bg-pink"></view>
+      </view>
+      <view class="cat-head neo-border bg-white">
+        <text class="font-black text-xl">(=^･ω･^=) ∫</text>
+        <view class="text-xs font-bold mt-1 text-gray">主子吃好喝好，长生不老</view>
+      </view>
+    </view>
+    <view style="height: 40px;"></view>
+  </scroll-view>
+
+  <scroll-view scroll-y wx:elif="{{showDevice}}" class="full-page">
+    <view class="header-nav">
+      <view class="back-btn neo-border neo-shadow-sm bg-white" bindtap="closeDevice">〈</view>
+      <view class="page-title">设备管理</view>
+      <view style="width: 40px;"></view>
+    </view>
+    <view class="device-hero">
+      <view class="device-avatar neo-border neo-shadow bg-yellow">🤖</view>
+      <view class="text-xl font-black mt-2">智能喂食器 V1.0</view>
+      <view class="status-tag neo-border neo-shadow-sm bg-mint mt-2">✨ 在线状态：元气满满！</view>
+    </view>
+    <view class="settings-list neo-card bg-white p-0 overflow-hidden">
+      <view class="setting-item border-dashed">
+        <view class="flex-row gap-2"><view class="icon-box bg-blue text-white">📶</view><text class="font-bold">网络连接</text></view>
+        <view class="text-gray text-sm font-bold">Home_WiFi 〉</view>
+      </view>
+      <view class="setting-item border-dashed">
+        <view class="flex-row gap-2"><view class="icon-box bg-mint text-white">🌡️</view><text class="font-bold">传感器状态</text></view>
+        <view class="text-green text-sm font-bold">一切正常 (๑•̀ㅂ•́)و 〉</view>
+      </view>
+      <view class="setting-item">
+        <view class="flex-row gap-2"><view class="icon-box bg-pink text-white">⚙️</view><text class="font-bold">固件版本</text></view>
+        <view class="text-gray text-sm font-bold">v1.0.2 〉</view>
+      </view>
+    </view>
+    <button class="reset-btn neo-border neo-shadow bg-red text-white font-black mt-6">💣 恢复出厂设置</button>
+  </scroll-view>
+
+  <view wx:else class="main-screen">
+    <scroll-view scroll-y wx:if="{{activeTab === 'home'}}" class="content-area">
+      <view class="tv-frame">
+        <view class="tv-antenna">
+          <view class="antenna-stick left"></view><view class="antenna-stick right"></view>
+          <view class="antenna-ball left-ball neo-border bg-pink"></view><view class="antenna-ball right-ball neo-border bg-mint"></view>
+        </view>
+        <view class="tv-screen neo-border" style="position: relative; overflow: hidden; background: #fef2f2;">
+          <block wx:if="{{videoSrc}}">
+            <image src="{{videoSrc}}" mode="aspectFill" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></image>
+          </block>
+          <block wx:else>
+            <view style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, #fdf2f8 0%, #fae8ff 100%);">
+              <view style="font-size: 56px; margin-bottom: 5px;">🛰️</view>
+              <view style="font-size: 14px; font-weight: 900; color: #71717a; background: white; padding: 2px 10px; border-radius: 20px; border: 2px solid #18181b;">信号失联 (｡•́︿•̀｡)</view>
+            </view>
+          </block>
+          <view class="badge neo-border neo-shadow-sm {{videoSrc ? 'bg-white' : 'bg-red text-white'}}" style="position: absolute; top: 8px; left: 8px; z-index: 10; margin: 0; font-weight: 900; font-size: 11px;">
+            <view class="dot {{videoSrc ? 'bg-red animate-pulse' : 'bg-white'}}"></view> {{videoSrc ? '直播中' : '摄像头掉线'}}
+          </view>
+          <view class="badge neo-border neo-shadow-sm bg-mint click-active" bindtap="openDevice" style="position: absolute; top: 8px; right: 8px; z-index: 10; margin: 0; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 18px;">⚙️</view>
+          <view wx:if="{{!videoSrc}}" class="badge neo-border neo-shadow-sm bg-yellow click-active" bindtap="reconnectCamera" style="position: absolute; bottom: 8px; left: 8px; z-index: 10; margin: 0; padding: 3px 10px; font-weight: 900; font-size: 13px;">点击重连 ⚡</view>
+          <view wx:elif="{{petLabel}}" class="badge neo-border neo-shadow-sm bg-yellow" style="position: absolute; bottom: 8px; left: 8px; z-index: 10; margin: 0; padding: 3px 10px; font-weight: 900; font-size: 13px;">👀 {{petLabel}}</view>
+          <view class="badge neo-border neo-shadow-sm bg-pink" style="position: absolute; bottom: 8px; right: 8px; z-index: 10; margin: 0; padding: 3px 12px; font-weight: 900; font-size: 16px; color: #18181b;">{{currentTime}}</view>
+        </view>
+        <view class="tv-buttons"><view class="tv-btn bg-red neo-border"></view><view class="tv-btn bg-mint neo-border"></view><view class="tv-slot bg-black"></view></view>
+      </view>
+
+      <view class="grid-2-col mb-4">
+        <view class="neo-card bg-pink click-active" bindtap="openRecords">
+          <view class="flex-row justify-between mb-3"><text class="text-sm font-bold">碗内余粮</text><text class="font-bold">〉</text></view>
+          <view class="flex-row gap-2">
+            <view class="circle-progress"><view class="circle-bg neo-border"></view><view class="circle-inner neo-border bg-white">🐟</view></view>
+            <view class="flex-col">
+              <view class="text-3xl font-black">{{foodLevel}}<text class="text-sm font-bold ml-1">g</text></view>
+              <view class="text-xs font-bold {{foodLevel >= 50 ? 'text-green' : 'text-red'}} mt-1">{{foodLevel >= 50 ? '余粮充足 (≧▽≦)' : '快没粮啦 (>_<)'}}</view>
+            </view>
+          </view>
+        </view>
+        <view class="neo-card bg-mint">
+          <view class="text-sm font-bold mb-3">粮桶环境</view>
+          <view class="flex-row justify-between mb-2"><view class="flex-row gap-1"><text class="text-sm">🌡️</text><text class="text-sm font-bold">温度</text></view><view class="text-xl font-black">{{temperature}}°C</view></view>
+          <view class="border-dashed my-2"></view>
+           <view class="flex-row justify-between mt-1"><view class="flex-row gap-1"><text class="text-sm">💧</text><text class="text-sm font-bold">湿度</text></view><view class="text-xl font-black {{humidity > 60 ? 'text-red' : ''}}">{{humidity}}%</view></view>
+        </view>
+      </view>
+      <view class="feed-btn-wrapper relative">
+        <button class="feed-btn bg-orange neo-border neo-shadow-lg" bindtap="feedNow" disabled="{{isFeeding}}">
+          <text wx:if="{{!isFeeding}}">🐟 一键加餐! *</text>
+          <text wx:else class="animate-spin">🌀 出粮中...</text>
+        </button>
+        <view wx:if="{{showSuccess}}" class="success-pop neo-border neo-shadow-sm bg-mint">加餐成功啦! (ノ´▽`)ノ</view>
+      </view>
+    </scroll-view>
+
+    <scroll-view scroll-y wx:if="{{activeTab === 'schedule'}}" class="content-area">
+      <view class="schedule-header mb-6 mt-2">
+        <view class="title-wrapper bg-yellow neo-border neo-shadow-sm">
+          <text class="font-black text-xl">喂食计划表 🗓️</text>
+        </view>
+      </view>
+
+      <view class="space-y-4">
+        <view class="neo-card bg-white click-active" wx:for="{{schedules}}" wx:key="id" bindtap="editSchedule" data-item="{{item}}">
+          <view class="flex-row justify-between" style="align-items: center;">
+            <view class="flex-col">
+              <view class="text-3xl font-black" style="{{!item.enabled ? 'color: #a1a1aa; text-decoration: line-through;' : ''}}">{{item.time}}</view>
+              <view class="text-gray font-bold text-sm mt-1">{{item.frequency}} | 出粮 {{item.amount}}g</view>
+            </view>
+            <view class="toggle-switch neo-border {{item.enabled ? 'bg-mint' : 'bg-gray'}}" catchtap="toggleSchedule" data-id="{{item.id}}">
+              <view class="toggle-knob bg-white neo-border" style="{{item.enabled ? 'left: 22px;' : 'left: -1px;'}}"></view>
+            </view>
+          </view>
+        </view>
+
+        <view class="add-btn bg-pink click-active mt-6" bindtap="addNewSchedule">
+          <view class="add-icon bg-white neo-border font-black">+</view>
+          <text class="font-black">添加新计划</text>
+        </view>
+      </view>
+    </scroll-view>
+
+    <view class="bottom-nav bg-white neo-border-top">
+       <view class="nav-item {{activeTab === 'home' ? 'active' : ''}}" bindtap="switchTab" data-tab="home">
+        <view class="nav-icon">🏠</view><text>首页</text>
+      </view>
+      <view class="nav-item {{activeTab === 'schedule' ? 'active' : ''}}" bindtap="switchTab" data-tab="schedule">
+        <view class="nav-icon">⏰</view><text>计划</text>
+      </view>
+    </view>
+
+    <view class="sheet-mask" wx:if="{{showScheduleModal}}" bindtap="closeScheduleModal"></view>
+    <view class="sheet-content bg-white neo-border-top {{showScheduleModal ? 'show' : ''}}">
+      <view class="drag-bar"></view>
+      <view class="sheet-header">
+        <view class="sheet-title bg-yellow neo-border neo-shadow-sm font-black">{{editingSchedule ? '修改计划 ✏️' : '新计划 🌟'}}</view>
+        <view class="save-btn bg-mint neo-border neo-shadow-sm click-active" bindtap="saveSchedule">保存</view>
+      </view>
+      
+      <view class="sheet-body" style="padding-top: 0;">
+        <view class="neo-card bg-white mb-4" style="padding: 12px 16px; display: flex; justify-content: space-between; align-items: center;">
+          <text class="font-bold text-lg">⏰ 出粮时间</text>
+          <picker mode="time" value="{{tempTime}}" bindchange="onTimeChange">
+            <view class="bg-fdf6e3 neo-border font-black text-xl px-4 py-2" style="border-radius: 8px; box-shadow: 2px 2px 0 0 #18181b;">{{tempTime}} 〉</view>
+          </picker>
+        </view>
+
+        <view class="neo-card bg-white mb-6" style="padding: 16px;">
+          <view class="flex-row justify-between mb-4">
+            <text class="font-bold text-lg">🐟 出粮克数</text>
+            <text class="font-black text-2xl text-orange">{{tempAmount}}g</text>
+          </view>
+          <slider min="5" max="100" step="5" value="{{tempAmount}}" block-color="#18181b" activeColor="#fb923c" backgroundColor="#e4e4e7" bindchange="onAmountChange" style="margin: 0;"/>
+        </view>
+
+        <view wx:if="{{editingSchedule}}" class="add-btn bg-red click-active" bindtap="deleteSchedule" style="border-style: solid; padding: 16px;">
+          <text class="font-black text-white">🗑️ 删除此计划</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,47 @@
+# Operating system and editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.tmp
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# MaixPy packages
+vision/maixcam/dist/
+vision/maixcam/config.py
+
+# WeChat DevTools private settings
+miniapp/wechat/project.private.config.json
+miniapp/wechat/config.js
+
+# Local firmware credentials
+firmware/stm32f103/Core/Inc/app_config.h
+
+# STM32CubeMX backup files
+*.bak
+*.old
+
+# Keil user and build outputs
+*.uvguix.*
+*.o
+*.d
+*.crf
+*.axf
+*.hex
+*.bin
+*.map
+*.lnp
+*.dep
+*.lst
+*.build_log.htm
+firmware/stm32f103/MDK-ARM/F103_Feeder/
+firmware/stm32f103/MDK-ARM/DebugConfig/
+
+# Logs and local captures
+*.log
+captures/
