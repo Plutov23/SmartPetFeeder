@@ -39,8 +39,19 @@ vision/maixcam/       MaixCam 视觉识别与视频流程序
 miniapp/wechat/       微信小程序
 hardware/             BOM 与硬件资料入口
 docs/                 架构、接线、协议和部署文档
+tutorials/            面向初学者的分章节复现教程
 assets/               README 与演示素材
 ```
+
+## 从零复现教程
+
+如果你第一次接触完整嵌入式项目，建议从教程目录开始，而不是直接阅读最终版源码：
+
+- [教程总目录](tutorials/README.md)
+- [第 0 章：项目介绍与系统架构](tutorials/00-项目介绍.md)
+- [第 1 章：硬件准备与接线](tutorials/01-硬件准备与接线.md)
+
+后续章节将依次覆盖 STM32 基础、称重标定、电机控制、传感器、OneNET、MaixCam、微信小程序和系统联调。
 
 ## 快速开始
 
